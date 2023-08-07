@@ -1,7 +1,7 @@
 function createNavBer(){
     let nav = document.createElement('nav')
     let ul = document.createElement('ul')
-    const listItems = ['All Products', 'Men', 'Women', 'Jewelry','Electronics']
+    const listItems = ['All Products', 'Men', 'Women', 'Jewelery','Electronics']
     for(let item of listItems){
         let li = document.createElement('li')
         li.textContent = item

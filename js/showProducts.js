@@ -9,9 +9,10 @@ function showProducts(products){
 }
 
 function createProductCard(product){
-    console.log(product.image);
     let card = document.createElement('div');
+    card.id = product.id;
     let imgDiv = document.createElement('div');
+    let restDiv = document.createElement('div')
     // imgDiv.style.backgroundColor = 'white'
 
     let img = document.createElement('img')
@@ -32,10 +33,14 @@ function createProductCard(product){
     imgDiv.classList.add('imgDiv')
     deleteIcon.classList.add('material-icons')
     editIcon.classList.add('material-icons')
+    deleteIcon.classList.add('delete')
+    editIcon.classList.add('edit')
 
 
     imgDiv.appendChild(img)
-    card.append(imgDiv, title, separateLine, iconsDiv, deleteIcon, editIcon)
+    iconsDiv.append(deleteIcon, editIcon)
+    restDiv.append(title,separateLine,iconsDiv)
+    card.append(imgDiv, restDiv)
 
     return card
 }

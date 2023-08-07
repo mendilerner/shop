@@ -1,39 +1,41 @@
 body {
     margin: 0;
     box-sizing: border-box;
+    background-color: #F5EBEB;
 }
-
 header {
     color: #4d4d4d;
     background-color: #F5D5C3;
-    height: 60px;
+    height: 65px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-header:first-child {
+header span{
+    margin: 0 12px;
     padding: 4px;
     font-family: sans-serif;
+    font-size: 20px;
 }
 
 header div {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     height: 100%;
 }
 
 header a {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     width: fit-content;
 
 }
 
-.material-icons {
-    border: 2px solid black;
+header .material-icons {
+    /* border: 2px solid black; */
     margin: 0 12px;
     color: #4d4d4d;
     width: 45px;
@@ -43,4 +45,33 @@ header a {
 header .material-icons:hover {
     font-size: 50px;
 }
+main{
+    min-height: calc(100vh - 160px);
+}
 
+main h2{
+    color: #4D4D4D;
+    margin: 12px auto;
+    text-align: center;
+    font-size: 3em;
+    font-family: sans-serif;
+    font-weight: 700;
+}
+footer{
+    font-size: 20px;
+    height: 85px;
+    background-color: black;
+    color: lightgray;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .material-icons{
+    padding: 8px;
+    margin: 8px 16px;
+    color:lightgray;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+}

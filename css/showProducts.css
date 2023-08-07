@@ -3,16 +3,16 @@
     width: 80vw;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: start;
     flex-wrap: wrap;
-    border: 2px solid black;
+    /* border: 2px solid black; */
 }
 .productCard{
-
+    height: fit-content;
     width: 16vw;
     margin: 20px;
     padding: 0;
-    background-color: #F5D5C3;
+    background-color: #FFDECB;
     border: 3px solid #ae521c;
     border-radius: 12px;
 }
@@ -24,12 +24,15 @@
     padding: 15% 0;
     background-color: white;
     border-radius: 12px 12px 0 0;
-}
+    height: 50%;}
+
 img{
     width: 60%;
-    height: 60%;
+    height: 40%;
 }
-
+.productCard div :last-child{
+    height: 50%;
+}
 .productCard p{
     font-family: sans-serif;
     font-weight: 600;
@@ -42,3 +45,14 @@ img{
     margin: 8px auto;
     
 }
+.productCard i{
+    font-size: 38px;
+    padding: 8px;
+}
+.productCard i:hover{
+    border-radius:50% ;
+    background-color: #F9F5EB;
+    border: none;
+    
+}
+
