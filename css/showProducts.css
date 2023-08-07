@@ -11,6 +11,7 @@
     height: fit-content;
     width: 16vw;
     margin: 20px;
+    margin-bottom: 28px;
     padding: 0;
     background-color: #FFDECB;
     border: 3px solid #ae521c;
@@ -27,6 +28,7 @@
     height: 50%;}
 
 img{
+    object-fit: contain;
     width: 60%;
     height: 40%;
 }
@@ -34,6 +36,7 @@ img{
     height: 50%;
 }
 .productCard p{
+    text-align: center;
     font-family: sans-serif;
     font-weight: 600;
     line-height: 1.7;
@@ -48,6 +51,7 @@ img{
 .productCard i{
     font-size: 38px;
     padding: 8px;
+    margin: 12px 8px;
 }
 .productCard i:hover{
     border-radius:50% ;

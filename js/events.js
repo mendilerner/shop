@@ -56,24 +56,38 @@ function filterProductBySearchInput(products, inputValue){
     }
 }
 
-export function declareDeleteProduct(products){
-    let cards = document.getElementsByClassName('productCard')
-    for(let i = 0; i < cards.length; i++){
-        let delBtn = cards[i].querySelector('.delete')
-        let currentCard = cards[i]
-        delBtn.addEventListener('click', () =>{
-            let cardIndex = products.findIndex((product) => {
-                return Number(product.id) === Number(currentCard.id)
-            })
-            // console.log("current card id", currentCard.id)
-            // console.log(cardIndex)
-            // console.log("product id", products[cardIndex].id)
-            products.splice(cardIndex,1)
-            currentCard.remove()
-        })
-    }
-}
 function removeOldCards(){
     let container = document.querySelector('.container')
     container.remove()
+}
+
+
+export function updateData(products){
+    if (localStorage.getItem('products') !== null) {
+        products = JSON.parse(localStorage.getItem('products'))
+        console.log("data updated")
+        console.log(products)
+    } 
+    else{
+        console.log('the local storage is empty');
+    }
+    return products
+}
+
+export function declareHomeBtn(){
+    let homeIcon = document.querySelector('#home')
+    homeIcon.addEventListener('click', () => {
+        let main = document.querySelector('main')
+        removeAllChildNodes(main)
+        location.reload()
+    })
+}
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+function show(_className) {
+    document.querySelector(`.${_className}`).style.display = 'block'
 }

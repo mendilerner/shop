@@ -1,4 +1,5 @@
-function showProducts(products){
+// import { declareEditProductPageEvent } from "./editProduct";
+export function showProducts(products){
     const productsContainer = document.createElement('div');
     productsContainer.classList.add('container')
     products.forEach((product) => {
@@ -25,6 +26,8 @@ function createProductCard(product){
     let iconsDiv = document.createElement('div')
     let deleteIcon = document.createElement('i')
     let editIcon = document.createElement('i')
+    editIcon.id = `edit${product.id}`
+
     deleteIcon.innerHTML = 'delete'
     editIcon.innerHTML = 'create'
 
@@ -33,6 +36,7 @@ function createProductCard(product){
     imgDiv.classList.add('imgDiv')
     deleteIcon.classList.add('material-icons')
     editIcon.classList.add('material-icons')
+    editIcon.classList.add('create')
     deleteIcon.classList.add('delete')
     editIcon.classList.add('edit')
 
@@ -41,8 +45,26 @@ function createProductCard(product){
     iconsDiv.append(deleteIcon, editIcon)
     restDiv.append(title,separateLine,iconsDiv)
     card.append(imgDiv, restDiv)
+    
 
     return card
 }
 
-export default showProducts;
+export function declareDeleteProduct(products){
+    let cards = document.getElementsByClassName('productCard')
+    for(let i = 0; i < cards.length; i++){
+        let delBtn = cards[i].querySelector('.delete')
+        let currentCard = cards[i]
+        delBtn.addEventListener('click', (e) =>{
+            e.stopPropagation()
+            let cardIndex = products.findIndex((product) => {
+                return Number(product.id) === Number(currentCard.id)
+            })
+            
+            products.splice(cardIndex,1)
+            localStorage.setItem('products', JSON.stringify(products));
+            currentCard.remove()
+        })
+    }
+}
+

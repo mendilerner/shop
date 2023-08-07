@@ -7,16 +7,18 @@ export function declareOpenProductEvent(products) {
                 return Number(product.id) === Number(card.id)
             })
             hide('displainer')
-            let navProdactPage = createNavProductPage(productCard)
+            let editBtnId = `edit${productCard.id}`
+            let navProdactPage = createNavProductPage(editBtnId)
             let cardPage = createProductPage(productCard)
             let main = document.querySelector('main')
             let containerDiv = document.createElement('div')
             containerDiv.classList.add('container')
+            containerDiv.classList.add('product-PAGE')
             containerDiv.classList.add('full-width')
             // main.classList.add('center')
             containerDiv.append(navProdactPage, cardPage)
             main.append(containerDiv)
-            declareNavProductEvents()
+            declareNavProductEvents(editBtnId)
         })
     }
 }
@@ -30,7 +32,7 @@ function show(_className) {
 
 function createProductPage(product) {
     let card = document.createElement('div');
-    card.id = product.id;
+    card.id = `c${product.id}`;
     let imgDiv = document.createElement('div');
     let img = document.createElement('img')
     img.src = `${product.image}`
@@ -60,9 +62,12 @@ function addDetails(field, value) {
     return [fieldHead, fieldValue]
 }
 
-function createNavProductPage() {
+function createNavProductPage(_editBtnId) {
     const div = document.createElement('div')
     div.classList.add('nav-product-page')
+    let productPageHead = document.createElement('h2')
+    productPageHead.textContent = 'Product'
+    productPageHead.classList.add('order-product-head')
     let homeIcon = document.createElement('i')
     let editIcon = document.createElement('i')
     let backIcon = document.createElement('i')
@@ -70,28 +75,33 @@ function createNavProductPage() {
     editIcon.innerHTML = 'home'
     homeIcon.innerHTML = 'create'
     editIcon.id = 'home'
-    homeIcon.id = 'create'
+    homeIcon.id = _editBtnId
     backIcon.id = 'arrow-back'
+    homeIcon.classList.add('create')
     homeIcon.classList.add('material-icons')
     editIcon.classList.add('material-icons')
     backIcon.classList.add('material-icons')
-    div.append(backIcon, homeIcon, editIcon)
+    editIcon.classList.add('edit')
+    div.append(backIcon, homeIcon, editIcon, productPageHead)
     return div
 }
 
-export function declareNavProductEvents() {
+export function declareNavProductEvents(_editBtnId) {
     let navProductPage = document.querySelector('.nav-product-page')
     let homeIcon = navProductPage.querySelector('#home')
-    let editIcon = navProductPage.querySelector('#create')
+    let editIcon = navProductPage.querySelector(`#${_editBtnId}`)
     let backIcon = navProductPage.querySelector('#arrow-back')
     homeIcon.addEventListener('click', () => {
         removeProductPageElements()
         show('displainer')
     })
-    editIcon.addEventListener('click', () => {
+    editIcon.addEventListener('click', (e) => {
+        // 
+
+    })
+    backIcon.addEventListener('click', () => {
         removeProductPageElements()
         show('displainer')
-        // showEditProduct()
     })
 
 
@@ -100,6 +110,7 @@ export function declareNavProductEvents() {
 function removeProductPageElements() {
     let productPage = document.querySelector('.productPage')
     let navProdPage = document.querySelector('.nav-product-page')
+    // let addBtn = document.querySelector('#add-icon')
     navProdPage.remove()
     productPage.remove()
 }
