@@ -19,6 +19,7 @@
     background-color: #FFDECB;
     border: 3px solid #ae521c;
     border-radius: 12px;
+    cursor: pointer;
 }
 .imgDiv{
     display: flex;
