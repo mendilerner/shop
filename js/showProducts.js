@@ -20,6 +20,7 @@ function createProductCard(product){
     img.src = `${product.image}`
     // img.width = "300px"
 
+    // let cardBottom = document.createElement('div')
     let title = document.createElement('p')
     title.textContent = product.title
     let separateLine = document.createElement('hr')
@@ -34,11 +35,13 @@ function createProductCard(product){
     // add class
     card.classList.add('productCard')
     imgDiv.classList.add('imgDiv')
+    restDiv.classList.add('rest-div')
     deleteIcon.classList.add('material-icons')
     editIcon.classList.add('material-icons')
     editIcon.classList.add('create')
     deleteIcon.classList.add('delete')
     editIcon.classList.add('edit')
+
 
 
     imgDiv.appendChild(img)

@@ -100,7 +100,6 @@ export function declareAddBtnEvent(products) {
             rating: { rate: Math.trunc(Math.random() * 5, 1), count: Math.round(Math.random() * 100)},
             quantity: Number(document.querySelector('#quantity_id').value)
         }
-        console.log(newProduct)
         let flag = Object.keys(newProduct).every((key) => { return (newProduct[key].toString()).length > 0 })
         console.log(flag)
         if (flag) {
@@ -115,3 +114,4 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild);
     }
 }
+

@@ -5,8 +5,10 @@ import {declareNavEvent, declareInputSearchEvent, updateData, declareHomeBtn} fr
 import { declareOpenProductEvent} from './productPage.js'
 import { declareAddProductPageEvent} from './addProduct.js'
 import { declareEditEvents } from './editProduct.js'
+import Utils from './Utils.js'
 // update data with local storage
-let data = updateData(originalData)
+// localStorage.removeItem('products')
+const data = await Utils.fetchData()
 data.forEach((product) => {
     product.quantity = Math.round(Math.random() * 100)
 })
