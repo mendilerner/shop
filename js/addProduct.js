@@ -1,3 +1,4 @@
+import utils from './Utils.js'
 export function declareAddProductPageEvent(data) {
     let addIcon = document.querySelector('#add-icon')
     addIcon.addEventListener('click', () => {
@@ -19,19 +20,17 @@ export function declareAddProductPageEvent(data) {
             containerDiv.appendChild(newForm)
             let bigContainerDiv = document.createElement('div')
             bigContainerDiv.classList.add('add-product-PAGE')
-            // main.removeChild(main.firstChild)
             bigContainerDiv.append(headDiv, containerDiv)
             main.append(bigContainerDiv)
             declareAddBtnEvent(data)
             hide('add-product-PAGE','displainer')
-            // hide('add-product-PAGE', 'displainer', 'product-PAGE')
         }
     })
 }
 
 function createAddForm() {
     let form = document.createElement('form')
-    let formBtn = createBtnForm('Add', 'edit_btn_id')
+    let formBtn = createBtnForm('Add', 'add_btn_id')
     addFieldToForm('Title', 'Add Title...', form, 'title_id')
     addFieldToForm('Category', 'Add Category...', form, 'category_id')
     addFieldToForm('Price', 'Add Price...', form, 'price_id')
@@ -84,16 +83,13 @@ function createBtnForm(_text, _id) {
 }
 
 export function declareAddBtnEvent(products) {
-    let btn = document.querySelector('#edit_btn_id');
-    btn.addEventListener('click', (e) => {
+    let btn = document.querySelector('#add_btn_id');
+    btn.addEventListener('click', async (e) => {
         e.stopPropagation()
         let form = document.querySelector('form')
-        // let formFields = document.querySelector('#title_id')
-        // console.log(formFields)
         let newProduct = {
-            id: products.length,
             title: document.querySelector('#title_id').value,
-            price: document.querySelector('#price_id').value,
+            price: Number(document.querySelector('#price_id').value),
             description: document.querySelector('#description_id').value,
             category: document.querySelector('#category_id').value,
             image: document.querySelector('#image_id').value,
@@ -103,8 +99,10 @@ export function declareAddBtnEvent(products) {
         let flag = Object.keys(newProduct).every((key) => { return (newProduct[key].toString()).length > 0 })
         console.log(flag)
         if (flag) {
-            products.push(newProduct)
-            localStorage.setItem('products', JSON.stringify(products));
+            // console.log(newProduct);
+            const message = await utils.addProduct(newProduct)
+            console.log(message);
+            
         }
     })
 }

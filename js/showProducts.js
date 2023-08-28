@@ -1,4 +1,5 @@
 // import { declareEditProductPageEvent } from "./editProduct";
+import utils from './Utils.js'
 export function showProducts(products){
     const productsContainer = document.createElement('div');
     productsContainer.classList.add('container')
@@ -58,14 +59,13 @@ export function declareDeleteProduct(products){
     for(let i = 0; i < cards.length; i++){
         let delBtn = cards[i].querySelector('.delete')
         let currentCard = cards[i]
-        delBtn.addEventListener('click', (e) =>{
+        delBtn.addEventListener('click', async (e) =>{
             e.stopPropagation()
             let cardIndex = products.findIndex((product) => {
                 return Number(product.id) === Number(currentCard.id)
             })
-            
-            products.splice(cardIndex,1)
-            localStorage.setItem('products', JSON.stringify(products));
+            console.log(currentCard.id, typeof currentCard.id);
+            const message = await utils.deleteData(Number(currentCard.id))
             currentCard.remove()
         })
     }

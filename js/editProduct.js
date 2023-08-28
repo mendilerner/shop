@@ -1,11 +1,12 @@
-export function declareEditEvents(data){
+import utils from './Utils.js'
+export function declareEditEvents(data) {
     let editButtons = document.getElementsByClassName('edit')
-    for(let i = 0; i < editButtons.length; i++){
+    for (let i = 0; i < editButtons.length; i++) {
         let productId = editButtons[i].id
         declareEditProductPageEvent(data, `${productId}`)
-    } 
+    }
 }
-export function declareEditProductPageEvent(products ,editBtnId) {
+export function declareEditProductPageEvent(products, editBtnId) {
     let editBtn = document.querySelector(`#${editBtnId}`)
     editBtn.addEventListener('click', (e) => {
         e.stopPropagation()
@@ -38,14 +39,14 @@ export function declareEditProductPageEvent(products ,editBtnId) {
 function createEditForm(products, productId) {
     let productIndex = products.findIndex((product) => {
         return Number(product.id) === Number(productId)
-    }) 
+    })
     let form = document.createElement('form')
     let formBtn = createBtnForm('Edit', 'edit_btn_id')
-    addFieldToForm('Title',products[productIndex].title , 'Add Title...', form, 'title_id')
-    addFieldToForm('Category',products[productIndex].category , 'Add Category...', form, 'category_id')
-    addFieldToForm('Price', products[productIndex].price ,'Add Price...', form, 'price_id')
-    addFieldToForm('Image URL',products[productIndex].image , 'Add Image URL...', form, 'image_id')
-    addFieldToForm('Quantity',products[productIndex].quantity , 'Add Quantity...', form, 'quantity_id')
+    addFieldToForm('Title', products[productIndex].title, 'Add Title...', form, 'title_id')
+    addFieldToForm('Category', products[productIndex].category, 'Add Category...', form, 'category_id')
+    addFieldToForm('Price', products[productIndex].price, 'Add Price...', form, 'price_id')
+    addFieldToForm('Image URL', products[productIndex].image, 'Add Image URL...', form, 'image_id')
+    addFieldToForm('Quantity', products[productIndex].quantity, 'Add Quantity...', form, 'quantity_id')
     // add description textarea
     let labelDescription = document.createElement('label')
     labelDescription.textContent = 'Description'
@@ -62,7 +63,7 @@ function createEditForm(products, productId) {
     return form
 }
 
-function addFieldToForm(_labelText, _inputValue,_placeHolder, _form, _id) {
+function addFieldToForm(_labelText, _inputValue, _placeHolder, _form, _id) {
     let label = document.createElement('label');
     let input = document.createElement('input');
     input.id = _id
@@ -77,9 +78,9 @@ function addFieldToForm(_labelText, _inputValue,_placeHolder, _form, _id) {
 function hide(...class_Name) {
     for (let clas of class_Name) {
         let container = document.querySelector(`.${clas}`);
-        if (container !== null){
+        if (container !== null) {
             container.style.display = 'none'
-        } 
+        }
     }
     document.querySelector(`.${class_Name[0]}`).style.display = 'block'
 
@@ -98,7 +99,7 @@ function createBtnForm(_text, _id) {
 
 function declareEditBtnEvent(products, _id) {
     let btn = document.querySelector('#edit_btn_id');
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', async (e) => {
         e.stopPropagation()
         // let form = document.querySelector('form')
         // let formFields = document.querySelector('#title_id')
@@ -120,9 +121,11 @@ function declareEditBtnEvent(products, _id) {
             let productIndex = products.findIndex((product) => {
                 return Number(newProduct.id) === Number(product.id)
             })
-            products.splice(productIndex, 1 ,newProduct)
-            console.log(products)
-            localStorage.setItem('products', JSON.stringify(products));
+            // products.splice(productIndex, 1 ,newProduct)
+            // console.log(products)
+            // localStorage.setItem('products', JSON.stringify(products));
+            const message = await utils.editProduct(newProduct)
+            console.log(message);
         }
         // location.reload()
     })
